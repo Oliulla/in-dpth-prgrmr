@@ -1,0 +1,7 @@
+0. Node
+1. C
+2. SQL
+3. CPP
+4. DSA
+5. Assembly
+6. Cyber Security

@@ -1,0 +1,38 @@
+Install node
+cd ~
+curl -sL https://deb.nodesource.com/setup_20.x -o /tmp/nodesource_setup.sh
+sudo bash /tmp/nodesource_setup.sh
+source
+https://github.com/hnasr/node-course-content
+
+Run tcpdump to know exactly when the packet is being sent (SYN)
+sudo tcpdump -i lo0 port 8888 -v -n
+
+filter on multiple ports  
+sudo tcpdump -i lo0 "port 8888 or port 8080" -v -n
+
+///kill job 
+ps -e | grep fs_usage
+kill -9 48764
+
+//for linux, run a trace to watch all sys calls
+strace -f -t -o out.txt node 050-poll.js 
+
+//for mac watch system calls
+sudo fs_usage cmd node
+
+//capturing kqueue in mac
+sudo ktrace trace -p node | grep kqueue
+
+
+//create private key 
+openssl genrsa -out private-key.pem 2048
+
+//create certificate and self-sign it with the private key
+openssl req -new -x509 -key private-key.pem -out certificate.pem -days 365
+
+//given a private key generate the public key 
+openssl rsa -in private-key.pem -pubout -out public-key.pem
+
+//given a cert extract hte public key 
+openssl x509 -in certificate.pem -pubkey -noout > public-key.pem
