@@ -1,4 +1,4 @@
-# Deep Dive Into In-dept Of Programming
+# Deep Dive Into Programming
 
 ## 1️⃣ C (Foundation of Systems Programming)
 
