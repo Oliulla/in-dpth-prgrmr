@@ -1,1 +1,0 @@
-cmd_Debug/nothing.a := rm -f Debug/nothing.a && /opt/homebrew/opt/python@3.13/bin/python3.13 gyp-mac-tool filter-libtool libtool  -static -o Debug/nothing.a Debug/obj.target/nothing/node_modules/node-addon-api/nothing.o
