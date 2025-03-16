@@ -145,7 +145,13 @@ With **low-level programming (C, ASM, OS, Bash)** and **DSA knowledge**, you are
 
 ## 🔥 **Best Learning Path for an In-Depth Programmer:**
 
-✅ **Step 1:** Master **C** → (2-3 Months)  
+✅ **Step 1:** Master **C** → (2-3 Months)
+
+```bash
+oli@oli:~/Desktop/in-dpth-prgrmr/in-dpth-prgrmr/c$ gcc memory-address.c -o memory-address
+oli@oli:~/Desktop/in-dpth-prgrmr/in-dpth-prgrmr/c$ ./memory-address
+```
+
 ✅ **Step 2:** Learn **Assembly** → (1-2 Months)  
 ✅ **Step 3:** Study **Operating Systems** → (2-3 Months)  
 ✅ **Step 4:** Learn **SQL** → (1 Month)  
