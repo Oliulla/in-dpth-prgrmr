@@ -172,3 +172,264 @@ We'll start with **basic Assembly (ASM)** concepts, move to **intermediate** top
 Once you're **comfortable with Assembly**, we’ll move to **Operating Systems (OS)** 🚀
 
 **Are you ready to start with Assembly Basics?** Let me know, and I’ll give you exercises! 🎯
+
+Awesome! 🎉 Now that your setup is done and you ran your first **Hello, World!** program in Assembly, let's go from **Basic → Advanced** step by step.
+
+---
+
+# **🚀 Assembly Language Roadmap (x86 NASM)**
+
+## **🟢 Step 1: Basics of Assembly**
+
+### ✅ **1. Understanding Registers** (How CPU Stores Data)
+
+**Registers** are small storage units inside the CPU. You mainly use:
+
+- **General-Purpose Registers (32-bit)**
+  - `EAX`, `EBX`, `ECX`, `EDX`
+- **Segment Registers**
+  - `CS`, `DS`, `SS`, `ES`, `FS`, `GS`
+- **Special Purpose Registers**
+  - `ESP` (Stack Pointer)
+  - `EBP` (Base Pointer)
+  - `EIP` (Instruction Pointer)
+  - `EFLAGS` (Flags Register)
+
+💡 **Example: Moving Data into Registers**
+
+```assembly
+section .text
+    global _start
+
+_start:
+    mov eax, 5      ; Store 5 in EAX
+    mov ebx, 10     ; Store 10 in EBX
+    add eax, ebx    ; EAX = EAX + EBX (5 + 10)
+
+    mov eax, 1      ; sys_exit
+    xor ebx, ebx    ; Exit code 0
+    int 0x80        ; Call kernel
+```
+
+---
+
+### ✅ **2. Basic Instructions & Data Movement**
+
+- `mov` → Moves data from one place to another
+- `add`, `sub`, `mul`, `div` → Basic arithmetic
+- `inc`, `dec` → Increment/Decrement
+- `cmp`, `jmp`, `je`, `jne` → Comparisons & Jumps
+
+💡 **Example: Arithmetic Operations**
+
+```assembly
+section .text
+    global _start
+
+_start:
+    mov eax, 15
+    mov ebx, 5
+    sub eax, ebx    ; eax = eax - ebx (15 - 5)
+
+    mov eax, 1
+    xor ebx, ebx
+    int 0x80
+```
+
+---
+
+### ✅ **3. System Calls (How Programs Talk to OS)**
+
+In Linux, system calls are done using `int 0x80`. The **EAX register** decides which system call to use.
+
+| **Syscall Number** | **Function**        | **EBX** | **ECX** | **EDX** |
+| ------------------ | ------------------- | ------- | ------- | ------- |
+| 1                  | `sys_exit` (Exit)   | Code    | -       | -       |
+| 3                  | `sys_read` (Read)   | FD      | Buffer  | Size    |
+| 4                  | `sys_write` (Write) | FD      | Buffer  | Size    |
+
+💡 **Example: Writing to the Screen (stdout)**
+
+```assembly
+section .data
+    message db "Hello, Assembly!", 10  ; Message + newline
+    len equ $-message                  ; Message length
+
+section .text
+    global _start
+
+_start:
+    mov eax, 4      ; sys_write
+    mov ebx, 1      ; stdout
+    mov ecx, message
+    mov edx, len
+    int 0x80        ; Call kernel
+
+    mov eax, 1      ; sys_exit
+    xor ebx, ebx
+    int 0x80
+```
+
+---
+
+## **🟡 Step 2: Intermediate Concepts**
+
+### ✅ **4. Conditional Jumps & Loops**
+
+- `jmp` → Unconditional Jump
+- `je` / `jne` → Jump if equal / not equal
+- `jg` / `jl` → Jump if greater / lesser
+- `loop` → Looping
+
+💡 **Example: If-Else in Assembly**
+
+```assembly
+section .text
+    global _start
+
+_start:
+    mov eax, 10
+    cmp eax, 5
+    jg greater_than_five  ; Jump if eax > 5
+
+    ; If eax <= 5, exit
+    mov eax, 1
+    xor ebx, ebx
+    int 0x80
+
+greater_than_five:
+    mov eax, 4
+    mov ebx, 1
+    mov ecx, msg
+    mov edx, len
+    int 0x80
+
+    mov eax, 1
+    xor ebx, ebx
+    int 0x80
+
+section .data
+    msg db "Greater than 5", 10
+    len equ $-msg
+```
+
+---
+
+### ✅ **5. Using the Stack (Function Calls & Local Variables)**
+
+- `push` → Pushes a value onto the stack
+- `pop` → Removes a value from the stack
+- `call` → Calls a function
+- `ret` → Returns from a function
+
+💡 **Example: Using Stack**
+
+```assembly
+section .text
+    global _start
+
+_start:
+    mov eax, 10
+    push eax  ; Store value on stack
+    call print_msg
+
+    pop eax   ; Restore value
+
+    mov eax, 1
+    xor ebx, ebx
+    int 0x80
+
+print_msg:
+    mov eax, 4
+    mov ebx, 1
+    mov ecx, msg
+    mov edx, len
+    int 0x80
+    ret
+
+section .data
+    msg db "Inside Function!", 10
+    len equ $-msg
+```
+
+---
+
+## **🔴 Step 3: Advanced Assembly Programming**
+
+### ✅ **6. Interfacing with C**
+
+- Writing inline Assembly inside C
+- Calling C functions from Assembly
+- Passing arguments via registers
+
+💡 **Example: Calling a C Function from Assembly**
+
+```c
+#include <stdio.h>
+
+void myFunction() {
+    printf("Hello from C Function!\n");
+}
+
+int main() {
+    asm ("call myFunction");
+    return 0;
+}
+```
+
+---
+
+### ✅ **7. Writing a Simple Shellcode**
+
+💡 **Example: Spawning a Shell in Linux**
+
+```assembly
+section .text
+    global _start
+
+_start:
+    xor eax, eax
+    push eax
+    push dword 0x68732f2f  ; "//sh"
+    push dword 0x6e69622f  ; "/bin"
+    mov ebx, esp
+    xor ecx, ecx
+    xor edx, edx
+    mov al, 11             ; execve syscall
+    int 0x80
+```
+
+---
+
+### ✅ **8. Reverse Engineering & Debugging**
+
+- Using `gdb` to debug Assembly code
+- Analyzing binary executables (`objdump`, `strace`, `ltrace`)
+
+💡 **Example: Debugging with GDB**
+
+```bash
+gdb ./hello
+disassemble _start
+```
+
+---
+
+# **🎯 Your Learning Roadmap**
+
+| **Step**  | **Topic**                      | **Time Estimate**   |
+| --------- | ------------------------------ | ------------------- |
+| 🟢 Step 1 | Basics (Registers, Syscalls)   | 2 weeks             |
+| 🟡 Step 2 | Loops, Conditions, Stack       | 2-3 weeks           |
+| 🔴 Step 3 | C Interfacing, Shellcode       | 3-4 weeks           |
+| 🎯 Step 4 | Debugging, Reverse Engineering | Continuous Learning |
+
+---
+
+## **📌 Next Steps**
+
+✔️ Try writing small Assembly programs  
+✔️ Use `gdb` to debug your code  
+✔️ Experiment with shellcoding & C interop
+
+Let me know if you want **practice exercises or more deep dives**! 🚀
