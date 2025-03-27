@@ -1,7 +1,9 @@
-node_modules/
-
 # Ignore all
 *
+
+# Ignore all .o files in any directory
+*.o
+
 
 # Unignore all with extensions
 !*.*
@@ -14,6 +16,7 @@ node_modules/
 # Ignore files with extension `.class` & `.exe`
 *.class
 *.exe
+*.s.swp
 
 # Ignore `bin` dir
 bin/
