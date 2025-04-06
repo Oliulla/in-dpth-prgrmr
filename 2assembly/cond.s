@@ -2,10 +2,10 @@ section .text
     global _start
 
 _start:
-    mov eax, 12
-    cmp eax, 12
-    jmp conditions
+    mov eax, 100
+    cmp eax, 50
 
+    jmp conditions
     jmp _exit
 
 _exit:
@@ -14,20 +14,20 @@ _exit:
     int 0x80
 
 conditions:
-    je jump_equal_12
-    jl jump_less_than_12    
-    jg jump_greater_than_12
+    je its_50
+    jl its_less_than_50
+    jg its_greater_than_50
 
-jump_equal_12:
+its_50:
     mov eax, 4
     mov ebx, 1
-    mov ecx, msg3
-    mov edx, len
+    mov ecx, msg1
+    mov edx, len1
     int 0x80
 
     jmp _exit
 
-jump_less_than_12:
+its_less_than_50:
     mov eax, 4
     mov ebx, 1
     mov ecx, msg
@@ -36,7 +36,7 @@ jump_less_than_12:
 
     jmp _exit
 
-jump_greater_than_12:
+its_greater_than_50:
     mov eax, 4
     mov ebx, 1
     mov ecx, msg2
@@ -46,11 +46,11 @@ jump_greater_than_12:
     jmp _exit
 
 section .data
-    msg db "Less than 12", 10
+    msg db "Less than 50!", 10
     len equ $-msg
 
-    msg2 db "Greater than 12", 10
-    len2 equ $-msg2
+    msg1 db "Equal to 50!", 10
+    len1 equ $-msg1
 
-    msg3 db "Equal to 12", 10
-    len3 equ $-msg3
+    msg2 db "Greater than 50!", 10
+    len2 equ $-msg2
