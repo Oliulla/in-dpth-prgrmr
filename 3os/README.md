@@ -1060,3 +1060,179 @@ Next, we’ll go into:
 🔸 **File Systems** — how files, directories, and storage are managed by the OS (including mounting, permissions, and inodes).
 
 Wanna keep going?
+
+Awesome! Let's move on to a super practical and widely-used part of the Operating System:
+
+---
+
+# 💾 7️⃣ **File Systems**
+
+_(How the OS stores, organizes, and manages your files)_
+
+---
+
+## 🔹 What Is a File System?
+
+A **file system** is the OS’s method of **organizing and storing data** on storage devices (like SSDs, HDDs, USB drives).  
+It tells the OS **where** and **how** to store, access, and retrieve data.
+
+🧠 Without a file system, all you'd have is a raw pile of bytes — no files, no folders, no order.
+
+---
+
+## 🔸 What the File System Provides
+
+| Feature                   | Description                                  |
+| ------------------------- | -------------------------------------------- |
+| **Files**                 | Logical containers for data                  |
+| **Directories (Folders)** | Hierarchical organization of files           |
+| **Metadata**              | Info like permissions, timestamps, ownership |
+| **Storage Abstraction**   | Hides the raw hardware complexity            |
+| **Access Control**        | Who can read/write/execute                   |
+
+---
+
+## 🔹 Files & File Types
+
+Every file system supports these:
+
+- **Regular Files** (`.txt`, `.exe`, etc.)
+- **Directories**
+- **Symbolic Links**
+- **Special Files** (e.g., `/dev/null`, `/dev/sda`)
+- **Sockets, Pipes** (used in IPC)
+
+---
+
+## 🔸 File System Structure
+
+A file system usually has:
+
+1. **Boot Block**  
+   Info for bootloader.
+
+2. **Superblock**  
+   Describes the FS: size, block size, inode count, etc.
+
+3. **Inode Table**  
+   Metadata for each file (name, permissions, timestamps, block locations).
+
+4. **Data Blocks**  
+   Actual content of files.
+
+---
+
+## 🔹 Inodes (Important!)
+
+Every file (and directory) is represented by an **inode**.  
+Think of it like a file’s identity card.
+
+An inode stores:
+
+| Metadata          | Description                   |
+| ----------------- | ----------------------------- |
+| File size         | In bytes                      |
+| Owner / Group IDs | Who owns the file             |
+| Timestamps        | Created, modified, accessed   |
+| Permissions       | Read, write, execute flags    |
+| Block pointers    | Where the file data is stored |
+
+🧠 Filenames are **not stored** in the inode — only in directory entries!
+
+---
+
+## 🔸 File Permissions (Unix-like)
+
+Permissions are stored in inodes and enforced by the OS.
+
+Example: `-rw-r--r--`
+
+- First character: `-` = regular file, `d` = directory
+- Next 3: User permissions (read/write)
+- Next 3: Group permissions
+- Last 3: Others (everyone else)
+
+---
+
+## 🔹 Mounting & File Hierarchy
+
+In Unix/Linux:
+
+- Everything starts from `/` (root)
+- Devices (USB, HDD) must be **mounted** into the tree
+
+Example:
+
+```bash
+mount /dev/sdb1 /mnt/usb
+```
+
+This puts the USB into the directory tree at `/mnt/usb`.
+
+---
+
+## 🔸 Common File Systems
+
+| File System | OS / Use Case    | Features                        |
+| ----------- | ---------------- | ------------------------------- |
+| **ext4**    | Linux            | Journaling, extents, stable     |
+| **FAT32**   | USB, old systems | No journaling, small files only |
+| **NTFS**    | Windows          | Compression, ACLs               |
+| **APFS**    | macOS            | Snapshots, encryption           |
+
+---
+
+## 🔹 Journaling (Why It Matters)
+
+Modern FSs like **ext4** use **journaling** to protect against data corruption.  
+It writes a log (journal) before making real changes — so if a crash happens, it can **recover safely**.
+
+---
+
+## 🔸 Accessing Files via System Calls
+
+Programs use **system calls** to talk to the file system:
+
+```c
+int fd = open("file.txt", O_RDONLY);
+read(fd, buffer, 100);
+write(fd, buffer, 100);
+close(fd);
+```
+
+These calls go from **userspace → kernel** → disk.
+
+---
+
+## 🔹 Real-World Concepts You’ll Encounter
+
+- **Disk I/O performance**
+- **Read/write caching**
+- **Disk quotas & limits**
+- **Sparse files** (files with "holes")
+- **File locking**
+
+---
+
+## ✅ Summary
+
+You now understand:
+
+- ✅ What a file system is and why we need it
+- ✅ Inodes and metadata
+- ✅ Directory structure and mounting
+- ✅ File permissions and system calls
+- ✅ Journaling and recovery mechanisms
+
+---
+
+## 📦 Fun Idea
+
+Wanna try building your own **tiny file system** in C? You can simulate blocks, inodes, and folders using just memory. Super educational!
+
+---
+
+Next up:  
+🔄 **Processes & Scheduling** — how the OS runs multiple programs at once, switches between them, and keeps everything smooth.
+
+Shall we continue?
