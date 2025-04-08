@@ -55,28 +55,7 @@ Backend developers benefit **massively** from OS knowledge—this will help you 
 - _"Operating Systems: Three Easy Pieces (OSTEP)"_
 - _"Linux Kernel Development" by Robert Love_
 
----
-
-## 4️⃣ SQL & Database Internals (3 Weeks)
-
-Since you’re a backend developer, **go beyond basic SQL** and study **indexing, query optimization, and database internals**.  
-🛠 **Goal:** Learn how **SQL engines optimize queries, indexing strategies, and transactions**.
-
-### 🔹 Topics to Cover:
-
-- Query Execution Plans
-- Indexing Strategies (B-Trees, Hash Indexes)
-- ACID Transactions & Locking
-- Scaling Databases (Sharding, Replication)
-
-📖 **Recommended Resources:**
-
-- _"SQL Performance Explained" by Markus Winand_
-- _"Database Internals" by Alex Petrov_
-
----
-
-## 5️⃣ Bash & Linux System Administration (2-3 Weeks)
+## 4️⃣ Bash & Linux System Administration (2-3 Weeks)
 
 Since you’re working in **backend development**, **Bash scripting and Linux knowledge** will help you with **server automation, deployments, and debugging**.  
 🛠 **Goal:** Automate tasks, manage servers, and understand Linux internals.
@@ -95,7 +74,7 @@ Since you’re working in **backend development**, **Bash scripting and Linux kn
 
 ---
 
-## 6️⃣ Advanced Data Structures & Algorithms (DSA with C++) (3-4 Months, Parallel Learning)
+## 5️⃣ Advanced Data Structures & Algorithms (DSA with C++) (3-4 Months, Parallel Learning)
 
 Since you're already **familiar with coding**, focus on **advanced problem-solving, graph theory, and algorithmic optimization**.  
 🛠 **Goal:** Improve **problem-solving skills for system design and interviews**.
@@ -115,7 +94,7 @@ Since you're already **familiar with coding**, focus on **advanced problem-solvi
 
 ---
 
-## 7️⃣ Cybersecurity (3-4 Months, Parallel Learning)
+## 6️⃣ Cybersecurity (3-4 Months, Parallel Learning)
 
 Since you're in **backend development**, cybersecurity knowledge is **critical** for protecting your apps.  
 🛠 **Goal:** Learn **how systems are hacked and how to secure them**.
@@ -137,15 +116,14 @@ Since you're in **backend development**, cybersecurity knowledge is **critical**
 
 ## 🔥 **Optimized Timeline for You**
 
-| Step          | Topic                  | Duration     | Parallel Learning                   |
-| ------------- | ---------------------- | ------------ | ----------------------------------- |
-| ✅ **Step 1** | **C Programming**      | 1-1.5 Months | -                                   |
-| ✅ **Step 2** | **Assembly (x86/ARM)** | 2-3 Weeks    | -                                   |
-| ✅ **Step 3** | **Operating Systems**  | 1-1.5 Months | Start **Bash** in parallel          |
-| ✅ **Step 4** | **SQL & DB Internals** | 3 Weeks      | Start **Cybersecurity** in parallel |
-| ✅ **Step 5** | **Bash & Linux**       | 2-3 Weeks    | -                                   |
-| ✅ **Step 6** | **DSA with C++**       | 3-4 Months   | Continue alongside security         |
-| ✅ **Step 7** | **Cybersecurity**      | 3-4 Months   | -                                   |
+| Step          | Topic                  | Duration     | Parallel Learning           |
+| ------------- | ---------------------- | ------------ | --------------------------- |
+| ✅ **Step 1** | **C Programming**      | 1-1.5 Months | -                           |
+| ✅ **Step 2** | **Assembly (x86/ARM)** | 2-3 Weeks    | -                           |
+| ✅ **Step 3** | **Operating Systems**  | 1-1.5 Months | Start **Bash** in parallel  |
+| ✅ **Step 4** | **Bash & Linux**       | 2-3 Weeks    | -                           |
+| ✅ **Step 5** | **DSA with C++**       | 3-4 Months   | Continue alongside security |
+| ✅ **Step 6** | **Cybersecurity**      | 3-4 Months   | -                           |
 
 ⏳ **Total Duration: ~8-12 Months** (Focused Learning)
 
