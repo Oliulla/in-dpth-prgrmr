@@ -1236,3 +1236,200 @@ Next up:
 🔄 **Processes & Scheduling** — how the OS runs multiple programs at once, switches between them, and keeps everything smooth.
 
 Shall we continue?
+
+Awesome — now we’re diving into one of the **core pillars of any Operating System**:
+
+---
+
+# 🧠 8️⃣ **Processes & Scheduling**
+
+_How the OS runs multiple programs seemingly at once_
+
+---
+
+## 🔹 What Is a Process?
+
+A **process** is simply a **program in execution**.
+
+> It’s more than just code — it has memory, system resources, open files, and its own execution context (registers, program counter, etc.)
+
+### When You Run a Program:
+
+- A process is **created**.
+- The OS **allocates memory** for it.
+- It is scheduled to run on the **CPU**.
+- It can be **paused**, **resumed**, or **terminated**.
+
+---
+
+## 🔸 Process vs Program
+
+| Concept    | Program                                | Process                         |
+| ---------- | -------------------------------------- | ------------------------------- |
+| Definition | A static file (e.g., binary or script) | An active instance of a program |
+| Stored in  | Disk                                   | RAM                             |
+| Passive    | Yes                                    | No – it uses CPU and RAM        |
+
+---
+
+## 🔹 Components of a Process
+
+Each process has:
+
+| Part                 | What It Contains                           |
+| -------------------- | ------------------------------------------ |
+| **Code**             | Instructions being executed (text segment) |
+| **Data**             | Global & static variables                  |
+| **Heap**             | Dynamically allocated memory (`malloc`)    |
+| **Stack**            | Function calls, local variables            |
+| **Registers**        | CPU state (PC, SP, etc.)                   |
+| **File descriptors** | Open files, sockets, etc.                  |
+
+---
+
+## 🔸 Process States
+
+Processes are **not always running** — they move through various **states**:
+
+```plaintext
+[NEW] → [READY] → [RUNNING] → [WAITING] → [TERMINATED]
+```
+
+| State          | Meaning                        |
+| -------------- | ------------------------------ |
+| **New**        | Just created                   |
+| **Ready**      | Waiting for CPU                |
+| **Running**    | Currently executing on the CPU |
+| **Waiting**    | Waiting for I/O or some event  |
+| **Terminated** | Finished execution             |
+
+---
+
+## 🔹 Process Creation (Unix/Linux)
+
+Processes are created using the `fork()` system call.
+
+```c
+pid_t pid = fork();
+```
+
+- `fork()` creates a **copy** of the current process.
+- `exec()` is often used after `fork()` to replace the child with a new program.
+
+Together they implement:
+
+> 🧪 `fork()` + 🧠 `exec()` = new program execution in child
+
+---
+
+## 🔸 Scheduling (How the OS Chooses What to Run)
+
+The **scheduler** is responsible for deciding **which process gets the CPU and when**.
+
+🛠 Goals of scheduling:
+
+- Maximize CPU utilization
+- Maximize throughput
+- Minimize waiting time & response time
+- Provide fairness
+
+---
+
+## 🔹 Types of Scheduling
+
+### ✅ **Preemptive** (most modern OSes):
+
+- OS can **interrupt** and switch out a running process (e.g., time slice expires)
+
+### ❌ **Non-preemptive**:
+
+- Process keeps CPU until it voluntarily releases it (e.g., exits or waits for I/O)
+
+---
+
+## 🔸 Common Scheduling Algorithms
+
+| Algorithm                         | Description                                       |
+| --------------------------------- | ------------------------------------------------- |
+| **FCFS** (First Come First Serve) | Simple queue-based                                |
+| **SJF** (Shortest Job First)      | Optimal (theoretically) but hard to know duration |
+| **Round Robin**                   | Each process gets fixed time slice (quantum)      |
+| **Priority Scheduling**           | Run processes with higher priority                |
+| **Multilevel Queues**             | Separate queues based on type (I/O, CPU-bound)    |
+| **Multilevel Feedback**           | Like queues, but can move between levels          |
+
+⏱️ Most real-world OSes use a **multilevel feedback queue with time-slicing**.
+
+---
+
+## 🔹 Context Switching
+
+When switching from one process to another, the OS must:
+
+- Save current process state (registers, PC, etc.)
+- Load the next process state
+- Update memory mappings if needed
+
+💡 This is called a **context switch**, and it's **not free** — it has overhead.
+
+---
+
+## 🔸 Process Identifiers (PIDs)
+
+Every process is assigned a **unique ID** (PID). You can view these using:
+
+```bash
+ps aux
+top
+htop
+```
+
+---
+
+## 🔹 Process Control Block (PCB)
+
+The OS stores all info about a process in a structure called a **PCB**.
+
+It contains:
+
+- PID
+- Process state
+- Program counter
+- CPU registers
+- Scheduling info
+- Memory maps
+- Open files
+
+---
+
+## 🧠 Summary
+
+You now understand:
+
+- ✅ What a process is
+- ✅ How it's created and scheduled
+- ✅ The different process states
+- ✅ What scheduling is and how it's done
+- ✅ How context switches work
+- ✅ That the OS maintains a PCB for each process
+
+---
+
+## 👨‍🔬 Practice Tip
+
+Try these Linux commands to observe real processes:
+
+```bash
+ps -ef         # List all processes
+top            # Real-time process monitor
+kill PID       # Send a signal to a process
+nice / renice  # Change process priority
+strace ./your_program # Trace system calls
+```
+
+---
+
+Next up:  
+📦 **Threads & Concurrency** — how multiple tasks run _within the same process_, and how the OS manages multitasking safely.
+
+Wanna continue?
