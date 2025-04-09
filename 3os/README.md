@@ -1433,3 +1433,131 @@ Next up:
 📦 **Threads & Concurrency** — how multiple tasks run _within the same process_, and how the OS manages multitasking safely.
 
 Wanna continue?
+
+Awesome choice. The **boot process & kernel internals** is where your theoretical OS knowledge meets real hardware. ⚙️ It’s the bridge between bare metal and your running programs — and if you want to write your own OS, this is **critical**.
+
+Let’s break this into two major parts:
+
+---
+
+## ⚡️ Part 1: The Boot Process (Step-by-Step)
+
+Here’s what happens the moment you power on your computer:
+
+### 🧠 1. **BIOS/UEFI Initialization**
+
+- This is firmware built into the motherboard.
+- It initializes hardware: RAM, CPU, keyboard, disk, etc.
+- Then it looks for a **bootable device** (e.g., hard drive, USB, CD).
+- It reads the **first 512 bytes** of that device — the **boot sector**.
+
+> 📝 This is where your `boot.asm` lives — it’s your custom bootloader!
+
+---
+
+### 💾 2. **Bootloader Executes**
+
+- BIOS loads your **boot sector** into memory at address `0x7C00`.
+- Then **jumps to it** and begins execution.
+- Your bootloader's job:  
+  ✅ Switch to a usable mode (optional)  
+  ✅ Load the **kernel** (your actual OS code) into memory  
+  ✅ Jump to the kernel’s entry point
+
+> 🛠 This is what you're already doing in your `boot.asm`: loading the kernel at `0x8000` with `int 0x13` and `jmp 0x0000:0x8000`.
+
+---
+
+### 🧵 3. **Switch from Real Mode to Protected Mode** (Optional but common)
+
+- Real mode = 16-bit, limited to 1MB memory, no protection
+- Protected mode = 32-bit, access to more memory and paging
+- Required for writing real OS kernels
+- You'll need to:
+  - Disable interrupts
+  - Load Global Descriptor Table (GDT)
+  - Set the PE (Protection Enable) bit in `CR0`
+  - Far jump to a 32-bit code segment
+
+> 👉 You're in real mode now, but eventually, you’ll want to enter protected mode if you build a more complete OS.
+
+---
+
+### 🚀 4. **Jump to the Kernel**
+
+- Bootloader loads the kernel into RAM
+- Sets up basic stack/memory if needed
+- Then jumps to your kernel’s entry point — and your OS takes over 🎉
+
+---
+
+## ⚙️ Part 2: Kernel Internals (What the Kernel Does)
+
+Once you're inside the kernel, it's responsible for:
+
+### 1. **Hardware Abstraction**
+
+- Provide a safe interface for hardware (keyboard, screen, disk, etc.)
+- Drivers handle direct hardware I/O
+
+### 2. **Memory Management**
+
+- Manage heap, stack, page tables, etc.
+- Handle malloc/free, virtual memory
+
+### 3. **Process Management**
+
+- Start new processes
+- Handle context switching and scheduling
+
+### 4. **File System Interface**
+
+- Read/write to disk
+- Provide abstraction for directories, permissions
+
+### 5. **System Calls**
+
+- Provide a gateway between user apps and kernel
+- E.g., `read()`, `write()`, `fork()`, `exec()`
+
+> In your kernel right now, you're doing something very basic:
+
+- Reading keyboard input
+- Printing characters with BIOS interrupts
+- That’s your kernel’s early stage — cool stuff!
+
+---
+
+### 🧠 Quick Visual Recap:
+
+```text
++----------------------------+
+|        Your App           |
++----------------------------+
+          ↓ System Calls
++----------------------------+
+|         Kernel             |
+| - Memory Mgmt              |
+| - Processes                |
+| - File Systems             |
+| - Device Drivers           |
++----------------------------+
+          ↑ Bootloader
++----------------------------+
+|   BIOS / UEFI (Firmware)   |
++----------------------------+
+|       Hardware             |
++----------------------------+
+```
+
+---
+
+## 🎯 Up Next?
+
+Would you like to now:
+
+1. Learn how to **switch to Protected Mode** in your bootloader?
+2. Study how the **kernel sets up stack/memory and handles input/output**?
+3. Get resources/videos/articles to go deeper into this stuff?
+
+You’re right at the edge of OS mastery — where things get really fun 🔥
