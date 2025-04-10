@@ -209,3 +209,53 @@ echo "Backup done to $DEST"
 ---
 
 Let me know when you're ready for a **small project-based challenge**, or if you want to go deeper into **intermediate Bash scripting** — like arrays, `case` statements, subshells, and traps.
+
+vHere’s a ✅ **Bash script to check if a file exists**:
+
+---
+
+### 📄 `check_file.sh`
+
+```bash
+#!/bin/bash
+
+echo "Enter the file path:"
+read file
+
+if [[ -e "$file" ]]; then
+  echo "✅ File exists: $file"
+else
+  echo "❌ File does not exist: $file"
+fi
+```
+
+---
+
+### 🧪 How to Use:
+
+1. Save it as `check_file.sh`
+2. Make it executable:
+
+   ```bash
+   chmod +x check_file.sh
+   ```
+
+3. Run it:
+
+   ```bash
+   ./check_file.sh
+   ```
+
+---
+
+### 🔍 Explanation:
+
+- `[[ -e "$file" ]]`: Checks if a file **exists** (whether it’s a file or directory).
+- You can also use:
+  - `-f` for regular file
+  - `-d` for directory
+  - `-s` to check if the file is **non-empty**
+
+---
+
+Want a more advanced version that checks if it’s a file vs directory?
