@@ -1,6 +1,6 @@
 # 💻 Deep Dive Into Systems Programming, Networking & Security
 
-This roadmap is tailored for backend developers who want to understand how computers really work — from memory and kernel internals to writing secure code, building optimized systems, and understanding network communication.
+This roadmap is tailored for who want to understand how computers really work — from memory and kernel internals to writing secure code, building optimized systems, and understanding network communication.
 
 ## ✅ 1️⃣ C (Foundation of Systems Programming) — _1 to 1.5 Months_
 
@@ -133,7 +133,7 @@ This roadmap is tailored for backend developers who want to understand how compu
 
 - _The Web Application Hacker’s Handbook_
 - _Hacking: The Art of Exploitation_ — Jon Erickson
-- HackTheBox, TryHackMe, OverTheWire
+- HackTheBox, TryHackMe(pass: Oli0912\_\_), OverTheWire
 
 ---
 
