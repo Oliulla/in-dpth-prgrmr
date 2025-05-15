@@ -4,6 +4,8 @@
     "stdlib.h": "c",
     "file_operations.h": "c",
     "string.h": "c",
-    "unistd.h": "c"
+    "unistd.h": "c",
+    "unordered_map": "cpp",
+    "iostream": "cpp"
   }
 }
