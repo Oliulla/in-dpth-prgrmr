@@ -1,0 +1,60 @@
+########################################
+# Ignore object files and compiled binaries
+########################################
+*.o
+*.obj
+*.out
+*.elf
+*.exe
+*.bin
+
+########################################
+# Ignore editor temp files
+########################################
+*~
+*.swp
+.swp
+
+########################################
+# Ignore build directories
+########################################
+/build/
+/bin/
+/dist/
+/Debug/
+/Release/
+
+########################################
+# Ignore files without extension (like a.out or 9.Copy_one_array_to_another)
+# But keep source files with extensions
+########################################
+# Ignore all files
+*
+
+# Unignore all files with extensions (e.g., .cpp, .h, .md, etc.)
+!*.*
+
+# Unignore all folders (so Git tracks folder structure)
+!*/
+
+########################################
+# Ignore Eclipse and other IDE files
+########################################
+.cproject
+.project
+.settings/
+.dep/
+
+########################################
+# Ignore specific build output artifacts if needed
+########################################
+*.hex
+*.map
+*.lst
+*.lss
+*.sym
+*.eep
+
+# Optional: Keep .elf and .hex if you want final build artifacts tracked
+# !*.elf
+# !*.hex
