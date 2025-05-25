@@ -5,10 +5,14 @@ using namespace std;
 class Solution {
 public:
     vector<int> rotateArrByKPosition(vector<int>& nums, int k) {
-        for (int i = 0; i < nums.size() - k; i++) {
-            int temp = nums[i];
-            nums[i] = nums[k + i];
-            nums[k + i] = temp;
+        int j = k;
+        while (--j >= 0)
+        {
+            for (int i = nums.size() - 1; i > 0; i--) {
+                int temp = nums[i];
+                nums[i] = nums[i - 1];
+                nums[i - 1] = temp;
+            }
         }
 
         return nums;
@@ -25,6 +29,9 @@ int main(void) {
         cout << num << " ";
     }
     cout << endl;
+
+    // Output:
+    // [4, 5, 1, 2, 3]
 
     return 0;
 }
