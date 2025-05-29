@@ -5,6 +5,19 @@ using namespace std;
 class Solution {
 public:
     int largestSumOfContiguousSubarray(vector<int>& nums) {
+        // Kadane’s Approach
+        int maxEnding = nums[0], res = nums[0];
+        for (int i = 1; i < nums.size(); i++) {
+
+            maxEnding = max(maxEnding + nums[i], nums[i]);
+            res = max(res, maxEnding);
+
+        }
+        return res;
+
+
+        // General Approach
+        /*
         int prevSum = 0;
         for (int i = 0; i < nums.size(); i++) {
             for (int j = i; j < nums.size(); j++) {
@@ -19,6 +32,7 @@ public:
         }
 
         return prevSum;
+       */
     }
 };
 
