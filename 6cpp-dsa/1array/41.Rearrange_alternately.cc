@@ -6,10 +6,10 @@ class Solution {
 public:
     vector<int> reArrangeAlternately(vector<int>& nums) {
 
-        for (int i = 0; i < 1; i += 2) {
+        for (int i = 0; i < nums.size(); i += 2) {
 
             int max = nums[i];
-            int maxIdx = i; // 3
+            int maxIdx = i;
             int min = nums[i];
             int minIdx = i;
 
@@ -26,15 +26,31 @@ public:
                 }
             }
 
-            cout << max << ":" << maxIdx << endl;
-            cout << min << ":" << minIdx << endl;
+            // cout << max << ":" << maxIdx << endl;
+            // cout << min << ":" << minIdx << endl;
 
-            int tempMx = nums[i];
-            int tempMn = nums[i + 1];
-            nums[i] = max;
-            nums[i + 1] = min;
-            nums[maxIdx] = tempMx;
-            nums[minIdx] = tempMn;
+
+            // {6, 1, 5, 2, 3, 4 }
+                // when i = 3
+                // MAX = 4
+                // MIN = 3
+                // MAX IDX = 5
+                // MIN IDX = 4
+            int tempMx = nums[i]; // 3
+            int tempMn = nums[i + 1]; // 4
+            nums[i] = max; // {6, 1, 5, 2, 4, _ }
+            nums[i + 1] = min; // {6, 1, 5, 2, 4, 3 }
+            // nums[maxIdx] = tempMx;
+            if (i < nums.size() - 2) {
+                if (i == minIdx) {
+                    nums[maxIdx] = tempMn;
+                }
+                else {
+                    nums[maxIdx] = tempMx;
+                    nums[minIdx] = tempMn;
+                    // {6, 1, 5, 2, 3, 4 }
+                }
+            }
 
             // int tempMn = nums[i + 1];
             // nums[i + 1] = min;
@@ -42,9 +58,9 @@ public:
 
         }
 
-        for (int num : nums) {
-            cout << num << endl;
-        }
+        // for (int num : nums) {
+        //     cout << num << endl;
+        // }
 
         return nums;
     }
@@ -53,10 +69,11 @@ public:
 int main(void) {
 
     Solution s;
-    vector<int> nums = { 1, 2, 3, 4 };
+    vector<int> nums = { 1, 2, 3, 4, 5, 6 };
+    // {6, 1, 5, 2, 3, 4}
     s.reArrangeAlternately(nums);
     for (int num : nums) {
-        // cout << num << endl;
+        cout << num << endl;
     }
 
     /*
