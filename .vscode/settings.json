@@ -7,6 +7,15 @@
     "unistd.h": "c",
     "unordered_map": "cpp",
     "iostream": "cpp",
-    "ostream": "cpp"
+    "ostream": "cpp",
+    "deque": "cpp",
+    "string": "cpp",
+    "vector": "cpp",
+    "stdexcept": "cpp",
+    "ratio": "cpp",
+    "hash_map": "cpp",
+    "bitset": "cpp",
+    "algorithm": "cpp",
+    "format": "cpp"
   }
 }
