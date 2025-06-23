@@ -7,23 +7,6 @@ using namespace std;
 class Solution {
 public:
     int longestIncreasingSubsequence(vector<int>& nums) {
-        /*
-            int curr = nums[0];
-            int count = 1;
-            int currIdx = 0;
-            for (int i = 1; i < nums.size(); i++) {
-                if (curr < nums[i]) {
-                    count++;
-                    curr = nums[i];
-                    currIdx = i;
-                }
-                if (currIdx == 0) {
-                    curr = nums[i];
-                }
-            }
-            return count;
-        */
-
         int n = nums.size();
 
         vector<int> dp(n, 1);
