@@ -72,7 +72,7 @@
 | 58  | Longest increasing subsequence       | Return length of LIS                              | `[10,9,2,5,3,7,101,18]`       | `4`                     |
 | 59  | Longest consecutive subsequence      | Max count of consecutive integers                 | `[100,4,200,1,3,2]`           | `4`                     |
 | 60  | Next greater element                 | Return next greater for each element              | `[4,5,2,10]`                  | `[5,10,10,-1]`          |
-| 61  | Trapping rain water                  | Return units of water trapped                     | `[0,1,0,2,1,0,1,3]`           | `6`                     |
+| 61  | Trapping rain water                  | Return units of water trapped                     | `[0,1,0,2,1,0,1,3]`           | `5`                     |
 | 62  | Max sum circular subarray            | Return max sum in circular manner                 | `[1,-2,3,-2]`                 | `3`                     |
 | 63  | Sort 0s,1s,2s (1 pass)               | Dutch Flag algo, 1 pass                           | `[0,2,1,2,0]`                 | `[0,0,1,2,2]`           |
 | 64  | Kth smallest (QuickSelect)           | Return kth smallest element                       | `[7,10,4,3,20,15]`, `k=3`     | `7`                     |
